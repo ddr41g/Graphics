@@ -142,7 +142,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Line_DDA.cpp" />
-    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\GLFW_window_ex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

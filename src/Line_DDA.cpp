@@ -4,65 +4,52 @@
 #include <math.h>
 using namespace std;
 
-int round(float x, float y) { return x + 0.5, y + 0.5; }
-
-void drawLine_DDA(float x1, float y1, float x2, float y2) {
-    float dx = abs(x2 - x1);
-    float dy = abs(y2 - y1);
-    float k;
-
-    if (dx >= dy)
-        k = dx;
-    else
-        k = dy;
-
-    dx = dx / k;
-    dy = dy / k;
-
-    for (int i = 1; i <= k; i++)
-    {
-        glCopyPixels(x1, y1, 800, 600, GL_COLOR);
-        x1 += dx;
-        y1 += dy;
-
-    }
-}
-
-int main()
+class Point
 {
-    GLFWwindow* window;
 
-    if (!glfwInit())
-        return -1;
+private:
 
-    window = glfwCreateWindow(800, 600, "Graphics Window", NULL, NULL);
-    if (!window)
-    {
-        glfwTerminate();
-        return -1;
+    GLfloat x1; GLfloat y1; GLfloat x2; GLfloat y2;
+
+    void get() {
+        cout << "Enter Endpoints for Line {x1,y1,x2,y2} : ";
+        cin >> x1 >> y1 >> x2 >> y2;
     }
 
-    float x1, y1, x2, y2;
-    cout << "Enter Endpoints for Line {x1,y1,x2,y2} : ";
-    cin >> x1 >> y1 >> x2 >> y2;
-
-
-    glfwMakeContextCurrent(window);
-
-    if (glewInit() != GLEW_OK)
-        return -1;
-
-    while (!glfwWindowShouldClose(window))
+public:
+    Point()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
+        cout << "Enter Endpoints for Line {x1,y1,x2,y2} : ";
+        cin >> x1 >> y1 >> x2 >> y2;
+    }
 
+    ~Point()
+    {
+
+    }
+
+    void drawLine_DDA() {
         glBegin(GL_POINTS);
-            drawLine_DDA(x1, y1, x2, y2);
-        glEnd();
+        GLfloat dx = abs(x2 - x1);
+        GLfloat dy = abs(y2 - y1);
+        GLfloat k;
 
-        glfwSwapBuffers(window);
+        if (dx >= dy)
+            k = dx;
+        else
+            k = dy;
+
+        GLfloat X = dx / 1000000*k;
+        GLfloat Y = dy / 1000000*k;
+
+        for (int i = 0; i <= 10000000000*k; i ++)
+        {
+            glVertex2f(x1, y1);
+            x1 += X;
+            y1 += Y;
+
+        }
+        glEnd();
     }
 
-    glfwTerminate();
-    return 0;
-}
+};
