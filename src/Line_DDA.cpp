@@ -39,10 +39,10 @@ public:
         else
             k = dy;
 
-        GLfloat X = dx / 1000000*k;
-        GLfloat Y = dy / 1000000*k;
+        GLfloat X = dx / 10000*k;
+        GLfloat Y = dy / 10000*k;
 
-        for (int i = 0; i <= 10000000000*k; i ++)
+        for (int i = 0; i <= 1000000*k; i ++)
         {
             glVertex2f(x1, y1);
             x1 += X;
