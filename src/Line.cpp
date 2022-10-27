@@ -28,8 +28,10 @@ public:
 
     }
 
-    void drawLine_DDA() {
+    void drawLine_DDA() 
+    {
         glBegin(GL_POINTS);
+
         GLfloat dx = abs(x2 - x1);
         GLfloat dy = abs(y2 - y1);
         GLfloat k;
@@ -39,16 +41,27 @@ public:
         else
             k = dy;
 
-        GLfloat X = dx / 10000*k;
-        GLfloat Y = dy / 10000*k;
+        GLfloat X = dx / 1000*k;
+        GLfloat Y = dy / 1000*k;
 
-        for (int i = 0; i <= 1000000*k; i ++)
+        for (int i = 0; i <= 1000*k; i ++)
         {
             glVertex2f(x1, y1);
             x1 += X;
             y1 += Y;
-
+            //cout << x1 << "," << y1 << endl;
+            
         }
+
+        glEnd();
+    }
+
+    void drawLine_Bresenham()
+    {
+        glBegin(GL_POINTS);
+        
+
+
         glEnd();
     }
 
