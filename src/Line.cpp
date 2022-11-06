@@ -60,8 +60,6 @@ public:
     {
         glBegin(GL_POINTS);
         
-
-
         glEnd();
     }
 
